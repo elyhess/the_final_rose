@@ -30,8 +30,8 @@ describe 'As a visitor' do
       expect(page).to have_content("Season #{@dave.bachelorette.season_number}")
       expect(page).to have_content(@dave.bachelorette.description)
       expect(page).to have_content("Outings:")
-      expect(page).to have_content(@helicopter_date.name)
-      expect(page).to have_content(@pool_party.name)
+      expect(page).to have_link(@helicopter_date.name)
+      expect(page).to have_link(@pool_party.name)
     end
   end
 end
