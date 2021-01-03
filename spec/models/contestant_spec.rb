@@ -21,8 +21,8 @@ RSpec.describe Contestant, type: :model do
 
       @dave = @staci.contestants.create!(name: "Dave", age: 20, hometown: "Denver")
       @joe = @staci.contestants.create!(name: "joe", age: 28, hometown: "Chicago")
-      @jon = @staci.contestants.create!(name: "jon", age: 30, hometown: "Cleveland")
-
+      @jon = @staci.contestants.create!(name: "jon", age: 30, hometown: "Chicago")
+      
       @helicopter_date = Outing.create!(name: "Helicopter Date", location: "Paris", date: "12/12/2021")
       @pool_party = Outing.create!(name: "Pool Date", location: "France", date: "12/1/2021")
 
@@ -33,6 +33,10 @@ RSpec.describe Contestant, type: :model do
 
     it "::average_age" do
       expect(Contestant.average_age).to eq(26)
+    end
+
+    it '::unique_hometowns' do
+      expect(Contestant.unique_hometowns).to eq(["Chicago", "Denver"])
     end
 
   end
