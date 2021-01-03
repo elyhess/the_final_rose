@@ -1,0 +1,33 @@
+require 'rails_helper'
+
+describe 'As a visitor' do
+  describe 'When i visit a bachelorette_contestants index page' do
+    before :each do
+      @staci = Bachelorette.create!(name: "Staci", description: "Best season ever", season_number: 1)
+      @darlene = Bachelorette.create!(name: "Darlene", description: "Worst season ever", season_number: 2)
+
+      @dave = @staci.contestants.create!(name: "Dave", age: 26, hometown: "Denver")
+      @joe = @staci.contestants.create!(name: "joe", age: 49, hometown: "Chicago")
+    end
+
+    it 'I can see all of the contestants for that bachelorette' do
+      visit bachelorette_path(@staci)
+
+      click_link "Contestants"
+
+      expect(page).to have_content("Contestants for #{@staci.name}")
+
+      within("#contestant-#{@dave.id}") do 
+        expect(page).to have_link(@dave.name)
+        expect(page).to have_content("Age: #{@dave.age}")
+        expect(page).to have_content("Hometown: #{@dave.hometown}")
+      end
+
+      within("#contestant-#{@joe.id}") do 
+        expect(page).to have_link(@joe.name)
+        expect(page).to have_content("Age: #{@joe.age}")
+        expect(page).to have_content("Hometown: #{@joe.hometown}")
+      end
+    end
+  end
+end
