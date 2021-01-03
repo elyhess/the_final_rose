@@ -29,5 +29,13 @@ describe 'As a visitor' do
         expect(page).to have_content("Hometown: #{@joe.hometown}")
       end
     end
+
+    it 'I can click on the contestants name and am taken to their show page' do
+      visit bachelorette_contestants_path(@staci)
+
+      click_link @dave.name
+
+      expect(current_path).to eq(contestant_path(@dave))
+    end
   end
 end
