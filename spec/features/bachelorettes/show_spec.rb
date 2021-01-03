@@ -17,5 +17,11 @@ describe 'As a visitor' do
       expect(page).to have_content("Season #{@staci.season_number}")
       expect(page).to have_link("Contestants")
     end
+
+    it 'I see the average age of the bachelorettes contestants' do
+      visit bachelorette_path(@staci)
+      
+      expect(page).to have_content("Average Age of Contestants: #{@staci.contestants.average_age}")
+    end
   end
 end
