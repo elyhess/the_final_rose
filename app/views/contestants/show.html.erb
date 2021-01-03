@@ -1,3 +1,10 @@
 <h1><%= @contestant.name %></h1>
 <h2>Age: <%= @contestant.age %></h2>
 <h2>Hometown: <%= @contestant.hometown %></h2>
+
+<h2>Season <%= @contestant.bachelorette.season_number %> - <%= @contestant.bachelorette.description %></h2><br>
+
+<h3>Outings:</h3>
+<% @contestant.outings.each do |outing| %>
+  <p><%= outing.name %></p>
+<% end %>
