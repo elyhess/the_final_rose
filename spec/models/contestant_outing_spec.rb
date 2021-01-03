@@ -1,14 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Contestant, type: :model do
+RSpec.describe ContestantOuting, type: :model do
   describe 'validations' do
     # it { should validate_presence_of :}
   end
 
   describe 'relationships' do
-    it {should belong_to :bachelorette }
-    it {should have_many :contestant_outings }
-    it {should have_many :outings }
+    it {should belong_to :contestant }
+    it {should belong_to :outing }
   end
 
   describe 'instance methods' do
