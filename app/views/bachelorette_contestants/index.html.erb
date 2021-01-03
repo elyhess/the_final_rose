@@ -7,3 +7,11 @@
     <h2>Hometown: <%= contestant.hometown %></h2>
   </section>
 <% end %>
+<br>
+
+<section id="hometowns">
+<h3>These contestants are from the following hometowns:</h3>
+  <% @bachelorette.contestants.unique_hometowns.each do |hometown| %>
+    <p><%= hometown %></p>
+  <% end %>
+</section>
