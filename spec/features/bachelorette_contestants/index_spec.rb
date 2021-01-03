@@ -37,5 +37,18 @@ describe 'As a visitor' do
 
       expect(current_path).to eq(contestant_path(@dave))
     end
+
+    it 'I see a list of unique hometowns of all contestants, no repeats' do
+      berb = @staci.contestants.create!(name: "berb", age: 12, hometown: "Chicago")
+
+      visit bachelorette_contestants_path(@staci)
+
+      within("#hometowns") do 
+        expect(page).to have_content("These contestants are from the following hometowns:")
+        expect(page).to have_content(@dave.hometown)
+        expect(page).to have_content(@joe.hometown, count: 1)
+      end
+
+    end
   end
 end
